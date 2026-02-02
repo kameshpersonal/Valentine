@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Kavya ❤️</title>
+
+<style>
+body{
+height:100vh;
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+font-family:Arial,sans-serif;
+overflow:hidden;
+}
+
+/* Floating hearts */
+.heart{
+position:absolute;
+color:rgba(255,0,80,0.6);
+font-size:20px;
+animation:float 6s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(100vh);opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+.box{
+background:white;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 20px 40px rgba(0,0,0,.2);
+max-width:320px;
+z-index:2;
+}
+h1{color:#ff4d6d;}
+p{font-size:18px;}
+.buttons{position:relative;height:100px;}
+button{
+position:absolute;
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:25px;
+cursor:pointer;
+}
+#yes{background:#ff4d6d;color:white;left:30px;}
+#no{background:#ccc;right:30px;}
+#love{
+display:none;
+margin-top:20px;
+font-size:20px;
+color:#ff4d6d;
+animation:pop .6s ease;
+}
+@keyframes pop{
+from{transform:scale(.5);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+/* Slideshow */
+.slideshow img{
+width:100%;
+border-radius:15px;
+display:none;
+margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 Snowman music -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/gset79KMmt0?autoplay=1&loop=1&playlist=gset79KMmt0"
+frameborder="0" allow="autoplay"></iframe>
+
+<div class="box">
+<h1>Kavya 💖</h1>
+<p>Will you be my Valentine? 💌</p>
+
+<div class="buttons">
+<button id="yes">Yes ❤️</button>
+<button id="no">No 😢</button>
+</div>
+
+<div id="love">
+💞 YAYYYY KAVYA 💞<br><br>
+You melted my heart like snow ☃️❤️<br>
+You are my forever Valentine 🥰<br><br>
+I love you endlessly 😘
+</div>
+
+<div class="slideshow">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+</div>
+</div>
+
+<script>
+// No button escape
+const noBtn=document.getElementById("no");
+noBtn.addEventListener("mouseover",()=>{
+noBtn.style.left=Math.random()*200+"px";
+noBtn.style.top=Math.random()*80+"px";
+});
+
+// Yes click magic
+document.getElementById("yes").onclick=()=>{
+document.getElementById("love").style.display="block";
+noBtn.style.display="none";
+document.getElementById("yes").style.display="none";
+startConfetti();
+startSlideshow();
+
+// WhatsApp message (change number)
+setTimeout(()=>{
+window.open(
+"https://wa.me/91XXXXXXXXXX?text=Yes%20I%20am%20your%20Valentine%20❤️🥰",
+"_blank");
+},2500);
+};
+
+// Hearts generator
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+15)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},300);
+
+// Confetti
+function startConfetti(){
+for(let i=0;i<100;i++){
+let c=document.createElement("div");
+c.style.position="fixed";
+c.style.width="8px";
+c.style.height="8px";
+c.style.background=`hsl(${Math.random()*360},100%,70%)`;
+c.style.left=Math.random()*100+"vw";
+c.style.top="-10px";
+c.style.animation=`fall ${Math.random()*3+2}s linear`;
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),5000);
+}
+}
+
+const style=document.createElement("style");
+style.innerHTML=`@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}`;
+document.head.appendChild(style);
+
+// Slideshow
+let index=0;
+function startSlideshow(){
+const imgs=document.querySelectorAll(".slideshow img");
+imgs[0].style.display="block";
+setInterval(()=>{
+imgs[index].style.display="none";
+index=(index+1)%imgs.length;
+imgs[index].style.display="block";
+},2000);
+}
+</script>
+
+</body>
+</html>
